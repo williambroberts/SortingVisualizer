@@ -2,7 +2,8 @@
     return new Promise((resolve) => setTimeout(resolve, milliSeconds))
   }	
 
-export async function bubbleSort(arr,sleepTime,setState,pause) {
+export async function BubbleSort(arr,sleepTime,setState,pause) {
+    console.log(arr,sleepTime,setState,pause)
     for(var i = 0; i < arr.length; i++) {
         for(var j = 0; j < ( arr.length - i -1 ); j++) {
 

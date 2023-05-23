@@ -1,6 +1,6 @@
 "use client"
 import sleep from "../components/algorithms/algorithms"
-import BubbleSort from "../components/algorithms/algorithms"
+import {BubbleSort} from "../components/algorithms/algorithms"
 import React, { createContext, useState,useEffect } from 'react'
 
 export const SortingContext = createContext({})
@@ -8,13 +8,13 @@ const SortProvider = ({children}) => {
     const [NumCols,setNumCols]=useState(0)
     const [NumRows,setNumRows]=useState(0)
     const [length,setLength]=useState(0)
-    const [hues,setHues]=useState([1,2,12,123,1,123,345,32,1,67,200,99,213])
+    const [hues,setHues]=useState([])
     const squares  = [1,4,9,16,25,36,49,64,81,100,132,144,169,196]
-
+  const algorithms = [BubbleSort]
     const [sleepTime,setSleepTime]=useState(0)
     const [algorithm,setAlgorithm]=useState(undefined)
     const [pause,setPause]=useState(false)
-    
+    console.log(typeof(BubbleSort))
     const chooseAlgorithm = (selection)=>{
       setAlgorithm((prev)=>selection)
     }
@@ -35,8 +35,18 @@ const SortProvider = ({children}) => {
     return Math.sqrt(closest)
     }
 
-    const run = (algorithm,sleepTime,setHues,hues,pause) =>{
-        algorithm(hues,sleepTime,setHues)
+    const run = () =>{
+      window.scrollTo(0,0)
+      console.log(hues,"hues")
+      if (hues.length < 10){
+        console.log("sra")
+        return
+      }
+      let algorithStringNumber = document.querySelector("#algorithDropdown")
+      let algorithNumber = algorithStringNumber.value 
+      setAlgorithm((prev)=> {return algorithms[algorithNumber]})
+      console.log("Run",algorithms[algorithNumber],hues,sleepTime)
+    algorithms[algorithNumber](hues,sleepTime,setHues)
     }
 
     const generateHues = (length) =>{
@@ -66,6 +76,7 @@ const SortProvider = ({children}) => {
     algorithm,setAlgorithm,
     pause,setPause,
     generateNewHuesArray,
+    run,
     }}>
         {children}
     </SortingContext.Provider>

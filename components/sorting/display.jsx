@@ -16,7 +16,7 @@ const Display = () => {
     
 
   
-  console.log(hues)
+  console.log(hues,"hues,",length,"length")
   return (
    <div className='display' style={{gridTemplateColumns:`repeat(${NumCols},1fr)`,gridTemplateRows:`repeat(${NumRows},1fr)`}}>
        {hues.map((item,index)=>
