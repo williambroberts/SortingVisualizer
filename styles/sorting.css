@@ -1,0 +1,34 @@
+.visualizer-grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fit,minmax(300px,736px));
+    gap: 1rem;
+    background-color: var(--bg-1);
+}
+
+.display {
+    aspect-ratio: 1/1;
+    border: 1px solid var(--bg-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 0rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.display-item {
+    flex: 1 1 auto;
+    border: 1px solid var(--bg-4);
+    box-sizing: border-box;
+}
+.settings {
+    aspect-ratio: 1/1;
+    border: 1px solid var(--bg-4);
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
