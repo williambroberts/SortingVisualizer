@@ -1,0 +1,25 @@
+.flex-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    grid-area: 0px;
+    width: 100%;
+    background-color: var(--bg-3);
+}
+
+.light-button {
+    color: var(--t-2);
+    font-size: var(--font-size-14);
+    border: 1px solid var(--bg-4);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-1);
+    cursor: pointer;
+}
+
+.light-button:hover {
+    color: ;
+}

@@ -185,6 +185,7 @@
     display: grid;
     grid-template-columns: 1fr;
     padding-top: 120px;
+   
     
     background-image: repeating-linear-gradient(transparent 0px 9px, var(--grid) 10px 10px),repeating-linear-gradient(90deg,transparent 0px 9px, var(--grid) 10px 10px);
     

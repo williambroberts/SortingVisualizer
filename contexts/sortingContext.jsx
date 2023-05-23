@@ -1,6 +1,6 @@
 "use client"
-import sleep from "../components/algorithms/algorithms"
-import {BubbleSort} from "../components/algorithms/algorithms"
+//import sleep from "../components/algorithms/algorithms"
+//import {BubbleSort} from "../components/algorithms/algorithms"
 import React, { createContext, useState,useEffect } from 'react'
 
 export const SortingContext = createContext({})
@@ -14,10 +14,40 @@ const SortProvider = ({children}) => {
     const [sleepTime,setSleepTime]=useState(0)
     const [algorithm,setAlgorithm]=useState(undefined)
     const [pause,setPause]=useState(false)
-    console.log(typeof(BubbleSort))
+    const [stop,setStop]=useState(false)
+  const [saturation,setSaturation]=useState(100)
+  const [alpha,setAlpha]=useState(1)
+  const [lightness,setLightness]=useState(50)
+    const sleep = (milliSeconds) => {
+      return new Promise((resolve) => setTimeout(resolve, milliSeconds))
+    }	
+
+
+   
+    async function BubbleSort(sleep,arr,sleepTime,setState,pause,stop) {
+      console.log("here",stop)
+      for(var i = 0; i < arr.length; i++) {
+          
+          for(var j = 0; j < ( arr.length - i -1 ); j++) {
+              console.log("here",stop,hues.length)
+              
+              if(arr[j] > arr[j+1]) {
+                var temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j+1] = temp
+                await sleep(sleepTime)
+                setState([...arr])
+              }
+          }
+      }
+  }
+   
+  
+
     const chooseAlgorithm = (selection)=>{
       setAlgorithm((prev)=>selection)
     }
+
 
     const generateNewHuesArray = () => {
       generateHues(length)
@@ -31,11 +61,11 @@ const SortProvider = ({children}) => {
           }
       }
     closest=squares[(squares.indexOf(closest)+1)]
-    console.log(closest,"closest")
+    //console.log(closest,"closest")
     return Math.sqrt(closest)
     }
 
-    const run = () =>{
+    const run = async () =>{
       window.scrollTo(0,0)
       console.log(hues,"hues")
       if (hues.length < 10){
@@ -45,8 +75,9 @@ const SortProvider = ({children}) => {
       let algorithStringNumber = document.querySelector("#algorithDropdown")
       let algorithNumber = algorithStringNumber.value 
       setAlgorithm((prev)=> {return algorithms[algorithNumber]})
-      console.log("Run",algorithms[algorithNumber],hues,sleepTime)
-    algorithms[algorithNumber](hues,sleepTime,setHues)
+     // console.log("Run",algorithms[algorithNumber],hues,sleepTime)
+     await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,pause,stop)
+      
     }
 
     const generateHues = (length) =>{
@@ -62,7 +93,7 @@ const SortProvider = ({children}) => {
     }
     useEffect(()=>{
       const size = findClosestValue(squares,length)
-      console.log(size,"size")
+     
       setNumCols((prev)=>size)
       setNumRows((prev)=>size)
       generateHues(length)
@@ -76,7 +107,8 @@ const SortProvider = ({children}) => {
     algorithm,setAlgorithm,
     pause,setPause,
     generateNewHuesArray,
-    run,
+    run,stop,setStop,
+    setSaturation,saturation,setAlpha,alpha,setLightness,lightness
     }}>
         {children}
     </SortingContext.Provider>

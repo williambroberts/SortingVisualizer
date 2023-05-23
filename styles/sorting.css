@@ -1,9 +1,13 @@
 .visualizer-grid {
+    margin: 0 auto;
+    justify-content: center;
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: repeat(auto-fit,minmax(300px,736px));
+    grid-template-columns: repeat(auto-fit,minmax(300px,500px));
     gap: 1rem;
     background-color: var(--bg-1);
+    width: 90%;
+    
 }
 
 .display {
@@ -31,4 +35,12 @@
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
+}
+.control-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-direction: column;
 }

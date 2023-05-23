@@ -11,17 +11,17 @@ const Display = () => {
       sleepTime,setSleepTime,
       algorithm,setAlgorithm,
       pause,setPause,
-      generateNewHuesArray,
+      generateNewHuesArray,stop
       } = useContext(SortingContext)
     
 
   
-  console.log(hues,"hues,",length,"length")
+  //console.log(hues,"hues,",length,"length")
   return (
    <div className='display' style={{gridTemplateColumns:`repeat(${NumCols},1fr)`,gridTemplateRows:`repeat(${NumRows},1fr)`}}>
        {hues.map((item,index)=>
          ( <div className='display-item'
-          key={uuidv4()} style={{backgroundColor:`hsl(${item},100%,50%)`}}> </div>)
+          key={uuidv4()} style={{backgroundColor:`hsla(${item},100%,50%,1)`}}> </div>)
 
        )}
    </div>
