@@ -11,7 +11,8 @@ const SortProvider = ({children}) => {
     const [length,setLength]=useState(0)
     const [hues,setHues]=useState([])
     const squares  = [1,4,9,16,25,36,49,64,81,100,132,144,169,196]
-  const algorithms = [BubbleSort,SelectionSort,InsertionSort]
+  const algorithms = [BubbleSort,SelectionSort,InsertionSort,CycleSort]
+  const algorithNames = ["Bubble sort","Selection sort","Insertion sort","Cycle sort"]
     const [sleepTime,setSleepTime]=useState(0)
     const [algorithm,setAlgorithm]=useState(undefined)
     const [pause,setPause]=useState(false)
@@ -28,7 +29,31 @@ const SortProvider = ({children}) => {
     const sleep = (milliSeconds) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
+    async function CycleSort(sleep,arr,sleepTime,setState,stop) {
+      for (let i=0;i<arr.length-1;i++){
+        for (let j=0;j<(arr.length+i);j++){
+          setInspectIndex(j)
+          await sleep(sleepTime)
+            if (arr[j]>arr[j+1]){
+              setInspectIndex(-1)
+              setchangeIndex(j)
+              setSwapIndex(j+1)
+              await sleep(sleepTime/2)
+                let temp = arr[j]
+                arr[j]=arr[j+1]
+                arr[j+1]=temp
+                setSwapIndex(j)
+                setchangeIndex(j+1)
+                await sleep(sleepTime/2)
+                setState([...arr])
+                setSwapIndex(-1)
+                setchangeIndex(-1)
+            }
+        }
+        
+    }
 
+    }
     async function InsertionSort(sleep,arr,sleepTime,setState,stop) {
       
       for (let i=0; i<arr.length-1;i++){
@@ -198,7 +223,7 @@ const SortProvider = ({children}) => {
     generateNewHuesArray,
     run,stop,setStop,
     setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares,
-    changeIndex,inspectIndex,swapIndex,hasEnded
+    changeIndex,inspectIndex,swapIndex,hasEnded,algorithNames
     }}>
         {children}
     </SortingContext.Provider>

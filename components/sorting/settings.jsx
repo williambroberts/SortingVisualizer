@@ -51,6 +51,7 @@ const SettingsPanel = () => {
   <option value="0">Bubble sort</option>
   <option value="1">Selection sort</option>
   <option value="2">Insertion sort</option>
+  <option value="3">Cycle sort</option>
 </select>
         </div>
       
