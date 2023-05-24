@@ -20,6 +20,7 @@ const SortProvider = ({children}) => {
   const [alpha,setAlpha]=useState(1)
   const [lightness,setLightness]=useState(50)
   const[isDisabled,setIsDisabled] = useState(false)
+  const [isSquares,setIsSquares] = useState(false)
     const sleep = (milliSeconds) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
@@ -130,7 +131,7 @@ const SortProvider = ({children}) => {
     pause,setPause,
     generateNewHuesArray,
     run,stop,setStop,
-    setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled
+    setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares
     }}>
         {children}
     </SortingContext.Provider>

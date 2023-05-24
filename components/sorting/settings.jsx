@@ -12,7 +12,7 @@ const SettingsPanel = () => {
         algorithm,setAlgorithm,
         pause,setPause,
         generateNewHuesArray,run,stop,setStop,
-        setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled
+        setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares
         } = useContext(SortingContext)
     const handleStop = (e)=>{
         // reload page
@@ -32,6 +32,7 @@ const SettingsPanel = () => {
         setSleepTime(0)
         setLength(0)
     }
+    
   return (
     <div className='settings'>
         <div className='control-container'>

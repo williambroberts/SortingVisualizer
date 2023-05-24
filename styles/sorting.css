@@ -22,7 +22,7 @@
 }
 
 .display-item {
-    flex: 1 1 auto;
+   
     border: 1px solid var(--bg-4);
     box-sizing: border-box;
 }
@@ -249,4 +249,21 @@ input[type="number"]:focus {
 }
 input[type="number"] {
     padding: 0.25rem;
+}
+
+.display2 {
+    aspect-ratio: 2/1;
+    border: 1px solid var(--bg-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 0rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.gradient-item {
+   
+    border: 1px solid transparent;
+    box-sizing: border-box;
 }
