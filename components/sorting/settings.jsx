@@ -55,9 +55,11 @@ const SettingsPanel = () => {
       
         <FlexCol>
         <div className='input-flex'>
-        <span className='setting-name'>Sleep time</span>
+        <span className='setting-name'>Sleep time (ms)</span>
+        <button className='settings-button-p' onClick={()=>setSleepTime((prev)=>prev===100? prev: prev+1)}>+</button>
         <input type="number" value={sleepTime} onChange={(e)=>setSleepTime((prev)=>parseInt(e.target.value))} name="sleepTime-input" min="0" max="100" disabled={isDisabled}/>
-        <span className='setting-units'><abbr title='milliseconds'>ms</abbr></span>
+        {/* <span className='setting-units'><abbr title='milliseconds'>ms</abbr></span> */}
+        <button className='settings-button' onClick={()=>setSleepTime((prev)=>prev===0? 0:prev-1)}>-</button>
         </div>
         <input className="input-range"
         type='range' min="0" max="100"  onChange={(e)=>setSleepTime((prev)=>parseInt(e.target.value))} value={sleepTime} name="sleepTime-range" disabled={isDisabled}/>
@@ -65,19 +67,23 @@ const SettingsPanel = () => {
         
         <FlexCol>
         <div className='input-flex'>
-        <span className='setting-name'>Number of squares</span>
+        <span className='setting-name'>Array length</span>
+        <button className='settings-button-p' onClick={()=>setLength((prev)=>prev===100? prev: prev+1)}>+</button>
         <input type='number' value={length} onChange={(e)=>setLength((prev)=>parseInt(e.target.value))} name="length-input" min="10" max="100" disabled={isDisabled}/>
-        <span className='setting-units'><abbr title='integer'>int</abbr></span>
+        {/* <span className='setting-units'><abbr title='integer'>int</abbr></span> */}
+        <button className='settings-button' onClick={()=>setLength((prev)=>prev<=3? 3: prev-1)}>-</button>
         </div>
         <input className="input-range" 
-        type='range' min="10" max="100" onChange={(e)=>setLength((prev)=>parseInt(e.target.value))} value={length} name="length-range" disabled={isDisabled}/>
+        type='range' min="3" max="100" onChange={(e)=>setLength((prev)=>parseInt(e.target.value))} value={length} name="length-range" disabled={isDisabled}/>
         </FlexCol>
         
         <FlexCol>
         <div className='input-flex'>
-        <span className='setting-name'>Lightness</span>
+        <span className='setting-name'>Lightness (%)</span>
+        <button className='settings-button-p' onClick={()=>setLightness((prev)=>prev===100? prev: prev+1)}>+</button>
         <input type="number" value={lightness} onChange={(e)=>setLightness((prev)=>parseInt(e.target.value))} name="lightness-input" min="0" max="100" disabled={isDisabled}/>
-        <span className='setting-units'><abbr title='percentage'>%</abbr></span>
+        {/* <span className='setting-units'><abbr title='percentage'>%</abbr></span> */}
+        <button className='settings-button' onClick={()=>setLightness((prev)=>prev===0? prev: prev-1)}>-</button>
         </div>
         <input className="input-range"
         type='range' min="0" max="100"  onChange={(e)=>setLightness((prev)=>parseInt(e.target.value))} value={lightness} name="lightness-range" disabled={isDisabled}/>
@@ -85,9 +91,11 @@ const SettingsPanel = () => {
 
         <FlexCol>
         <div className='input-flex'>
-        <span className='setting-name'>Saturation</span>
+        <span className='setting-name'>Saturation (%)</span>
+        <button className='settings-button-p' onClick={()=>setSaturation((prev)=>prev===100? prev: prev+1)}>+</button>
         <input type="number" value={saturation} onChange={(e)=>setSaturation((prev)=>parseInt(e.target.value))} name="saturation-input" min="0" max="100" disabled={isDisabled}/>
-        <span className='setting-units'><abbr title='percentage'>%</abbr></span>
+        {/* <span className='setting-units'><abbr title='percentage'>%</abbr></span> */}
+        <button className='settings-button' onClick={()=>setSaturation((prev)=>prev===0? prev: prev-1)}>-</button>
         </div>
         <input className="input-range"
         type='range' min="0" max="100"  onChange={(e)=>setSaturation((prev)=>parseInt(e.target.value))} value={saturation} name="saturation-range" disabled={isDisabled}/>
@@ -95,8 +103,10 @@ const SettingsPanel = () => {
         <FlexCol>
         <div className='input-flex'>
         <span className='setting-name'>Alpha</span>
+        <button className='settings-button-p' onClick={()=>setSaturation((prev)=>prev===1? prev: prev+0.01)}>+</button>
         <input type="number" value={alpha} onChange={(e)=>setAlpha((prev)=>parseInt(e.target.value))} name="alpha-input" min="0" max="100" disabled={isDisabled}/>
-        <span className='setting-units'></span>
+        {/* <span className='setting-units'></span> */}
+        <button className='settings-button' onClick={()=>setLightness((prev)=>prev===0? prev: prev-0.01)}>-</button>
         </div>
         <input className="input-range"
         type='range' min="0" max="1"  step="0.01" onChange={(e)=>setAlpha((prev)=>parseFloat(e.target.value))} value={alpha} name="alpha-range" disabled={isDisabled}/>

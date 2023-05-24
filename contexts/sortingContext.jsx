@@ -21,6 +21,10 @@ const SortProvider = ({children}) => {
   const [lightness,setLightness]=useState(50)
   const[isDisabled,setIsDisabled] = useState(false)
   const [isSquares,setIsSquares] = useState(false)
+  const [changeIndex,setchangeIndex]=useState()
+  const [inspectIndex,setInspectIndex]=useState()
+  const [swapIndex,setSwapIndex]=useState()
+  const [hasEnded,setHasEnded]=useState(false)
     const sleep = (milliSeconds) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
@@ -32,6 +36,9 @@ const SortProvider = ({children}) => {
         let rowMax = 0
         let rowMaxIndex = 0
         for (let j=0; j<rowLen;j++){
+          setInspectIndex(j)
+           await sleep(sleepTime)
+
           if (arr[j]> rowMax){
             rowMax = arr[j], rowMaxIndex = j
           }
@@ -40,7 +47,7 @@ const SortProvider = ({children}) => {
        
        arr[rowLen-1]=rowMax
        arr[rowMaxIndex]=temp
-       await sleep(sleepTime)
+      
         setState([...arr])
       }
     }
@@ -50,14 +57,24 @@ const SortProvider = ({children}) => {
       for(let i = 0; i < arr.length; i++) {
           
           for(let j = 0; j < ( arr.length - i -1 ); j++) {
-              
+            setInspectIndex(j)
+            await sleep(sleepTime)
+             
               
               if(arr[j] > arr[j+1]) {
+                setInspectIndex(-1)
+                 setchangeIndex(j)
+                 setSwapIndex(j+1)
+                 await sleep(sleepTime/2)
                 let temp = arr[j]
                 arr[j] = arr[j + 1]
                 arr[j+1] = temp
-                await sleep(sleepTime)
+                setSwapIndex(j)
+                setchangeIndex(j+1)
+                await sleep(sleepTime/2)
                 setState([...arr])
+                setSwapIndex(-1)
+                setchangeIndex(-1)
               }
           }
       }
@@ -90,8 +107,10 @@ const SortProvider = ({children}) => {
       setIsDisabled((prev)=>true)
       window.scrollTo(0,0)
       console.log(hues,"hues")
-      if (hues.length < 10){
-        console.log("sra")
+      if (hues.length < 3){
+        alert("please select an Array length")
+        setIsDisabled((prev)=>false)
+
         return
       }
       let algorithStringNumber = document.querySelector("#algorithDropdown")
@@ -101,6 +120,17 @@ const SortProvider = ({children}) => {
      // console.log("Run",algorithms[algorithNumber],hues,sleepTime)
      await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,stop)
       setIsDisabled((prev)=>false)
+     
+      setHasEnded(true)
+      await(sleep(1000))
+      setHasEnded(false)
+      setInspectIndex(-1)
+
+      // graphItems.forEach((item)=>console.log(item.style))
+      // graphItems.forEach((item)=> item.style.backgroundColor="var(--blue)")
+      // setTimeout(()=>{
+      //   graphItems.forEach((item)=> item.style.backgroundColor="var(--white)")
+      // },1000)
     }
 
     const generateHues = (length) =>{
@@ -131,7 +161,8 @@ const SortProvider = ({children}) => {
     pause,setPause,
     generateNewHuesArray,
     run,stop,setStop,
-    setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares
+    setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares,
+    changeIndex,inspectIndex,swapIndex,hasEnded
     }}>
         {children}
     </SortingContext.Provider>

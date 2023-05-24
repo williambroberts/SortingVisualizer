@@ -11,7 +11,8 @@ const Display = () => {
       sleepTime,setSleepTime,
       algorithm,setAlgorithm,
       pause,setPause,
-      generateNewHuesArray,stop,alpha,lightness,saturation,setIsSquares,squares
+      generateNewHuesArray,stop,alpha,lightness,saturation,setIsSquares,squares,
+      changeIndex,inspectIndex,swapIndex,hasEnded
       } = useContext(SortingContext)
     
 
@@ -25,12 +26,23 @@ const Display = () => {
 
   //      )}
   //  </div>
+
+  <div className='display-wrapper'>
+
+ 
   <div className='display2' style={{gridTemplateColumns:`repeat(${length-1},1fr)`}}>
       {hues.slice(0,hues.length-1).map((item,index)=> (
-        <div className='gradient-item' style={{ backgroundImage: `linear-gradient(to right, hsla(${item},${saturation}%,${lightness}%,${alpha}),  hsla(${hues[index+1]},${saturation}%,${lightness}%,${alpha}))`}}></div>
+        <div key={uuidv4()} className='gradient-item' style={{ backgroundImage: `linear-gradient(to right, hsla(${item},${saturation}%,${lightness}%,${alpha}),  hsla(${hues[index+1]},${saturation}%,${lightness}%,${alpha}))`}}></div>
       )
        ) }
   </div>
+
+        <div className='display3'>
+            {hues.map((item,index)=> (
+              <div key={uuidv4()} className='graph-item' style={{height:`${item/3.6}%`,backgroundColor:`${hasEnded===true? "var(--blue)": index===inspectIndex? "var(--yellow)": index===changeIndex? 'var(--green)': index===swapIndex?'var(--red':''}`}}><abbr title={item}></abbr></div>
+            ) )}
+        </div>
+   </div>
   )
 }
 
