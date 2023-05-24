@@ -1,4 +1,5 @@
 "use client"
+//import { selectionSort } from '@/components/algorithms/algorithms'
 //import sleep from "../components/algorithms/algorithms"
 //import {BubbleSort} from "../components/algorithms/algorithms"
 import React, { createContext, useState,useEffect } from 'react'
@@ -10,7 +11,7 @@ const SortProvider = ({children}) => {
     const [length,setLength]=useState(0)
     const [hues,setHues]=useState([])
     const squares  = [1,4,9,16,25,36,49,64,81,100,132,144,169,196]
-  const algorithms = [BubbleSort]
+  const algorithms = [BubbleSort,SelectionSort]
     const [sleepTime,setSleepTime]=useState(0)
     const [algorithm,setAlgorithm]=useState(undefined)
     const [pause,setPause]=useState(false)
@@ -23,17 +24,35 @@ const SortProvider = ({children}) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
 
-
+    async function SelectionSort(sleep,arr,sleepTime,setState,stop){
+      console.log("SelectionSort",stop)
+      for (let i=0; i<arr.length-1;i++){
+        let rowLen = arr.length-i
+        let rowMax = 0
+        let rowMaxIndex = 0
+        for (let j=0; j<rowLen;j++){
+          if (arr[j]> rowMax){
+            rowMax = arr[j], rowMaxIndex = j
+          }
+        }
+       let temp = arr[rowLen-1]
+       
+       arr[rowLen-1]=rowMax
+       arr[rowMaxIndex]=temp
+       await sleep(sleepTime)
+        setState([...arr])
+      }
+    }
    
-    async function BubbleSort(sleep,arr,sleepTime,setState,pause,stop) {
-      console.log("here",stop)
-      for(var i = 0; i < arr.length; i++) {
+    async function BubbleSort(sleep,arr,sleepTime,setState,stop) {
+      console.log("BubbleSort",stop)
+      for(let i = 0; i < arr.length; i++) {
           
-          for(var j = 0; j < ( arr.length - i -1 ); j++) {
-              console.log("here",stop,hues.length)
+          for(let j = 0; j < ( arr.length - i -1 ); j++) {
+              
               
               if(arr[j] > arr[j+1]) {
-                var temp = arr[j]
+                let temp = arr[j]
                 arr[j] = arr[j + 1]
                 arr[j+1] = temp
                 await sleep(sleepTime)
@@ -75,10 +94,11 @@ const SortProvider = ({children}) => {
         return
       }
       let algorithStringNumber = document.querySelector("#algorithDropdown")
-      let algorithNumber = algorithStringNumber.value 
+      let algorithNumber = parseInt(algorithStringNumber.value)
+      console.log(algorithNumber,"alg number",algorithStringNumber)
       setAlgorithm((prev)=> {return algorithms[algorithNumber]})
      // console.log("Run",algorithms[algorithNumber],hues,sleepTime)
-     await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,pause,stop)
+     await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,stop)
       setIsDisabled((prev)=>false)
     }
 
