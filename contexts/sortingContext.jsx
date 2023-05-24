@@ -18,6 +18,7 @@ const SortProvider = ({children}) => {
   const [saturation,setSaturation]=useState(100)
   const [alpha,setAlpha]=useState(1)
   const [lightness,setLightness]=useState(50)
+  const[isDisabled,setIsDisabled] = useState(false)
     const sleep = (milliSeconds) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
@@ -66,6 +67,7 @@ const SortProvider = ({children}) => {
     }
 
     const run = async () =>{
+      setIsDisabled((prev)=>true)
       window.scrollTo(0,0)
       console.log(hues,"hues")
       if (hues.length < 10){
@@ -77,7 +79,7 @@ const SortProvider = ({children}) => {
       setAlgorithm((prev)=> {return algorithms[algorithNumber]})
      // console.log("Run",algorithms[algorithNumber],hues,sleepTime)
      await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,pause,stop)
-      
+      setIsDisabled((prev)=>false)
     }
 
     const generateHues = (length) =>{
@@ -108,7 +110,7 @@ const SortProvider = ({children}) => {
     pause,setPause,
     generateNewHuesArray,
     run,stop,setStop,
-    setSaturation,saturation,setAlpha,alpha,setLightness,lightness
+    setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled
     }}>
         {children}
     </SortingContext.Provider>

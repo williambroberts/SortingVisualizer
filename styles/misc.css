@@ -18,8 +18,10 @@
     justify-content: center;
     background-color: var(--bg-1);
     cursor: pointer;
+    transition: var(--transition-1);
 }
 
 .light-button:hover {
-    color: ;
+    color:var(--t-3);
+    border-color: var(--bg-3);
 }
