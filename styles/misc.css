@@ -25,3 +25,23 @@
     color:var(--t-3);
     border-color: var(--bg-3);
 }
+
+
+.theme-button {
+    background-color: transparent;
+    border: none;
+    color: var(--t-1);
+    font-size: var(--font-size-20);
+    padding: 0.25rem;
+    border-radius: 50%;
+    transition: var(--transition-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.theme-button:hover {
+    background-color: var(--bg-4);
+}

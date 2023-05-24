@@ -41,6 +41,212 @@
     width: 100%;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 0.0rem;
     flex-direction: column;
+}
+
+.input-flex {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.125rem 0.5rem;
+    box-sizing: border-box;
+}
+
+.input-flex > input:nth-child(2){
+    margin-left: auto;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color:var(--blue);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color:var(--blue);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+  }
+  
+  input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background-color:var(--blue);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+  }
+  
+.input-range::before {
+    position: absolute;
+    width: 100%;
+    content: "";
+    height: 4px;
+    border-radius: 100px;
+    background-color: var(--bg-4);
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    z-index: 0;
+    display: flex;
+}
+.input-range::after {
+    content: "";
+    height: 1rem;
+    width: 2px;
+    background-color: var(--bg-4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.input-range {
+    width: 90%;
+    box-sizing: border-box;
+    padding:0.5rem 0.5rem;
+    -webkit-appearance: none;
+    background-color: var(--bg-3);
+    position: relative;
+   
+}
+.setting-name {
+    text-decoration: none;
+    color: var(--t-1);
+    font-size: var(--font-size-14);
+    text-decoration: none;
+    font-weight: 400;
+    
+}
+.setting-units > abbr {
+    text-decoration: none;
+    cursor: pointer;
+}
+.setting-units {
+    color: var(--t-1);
+    font-size: var(--font-size-16);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.buttons-flex {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.5rem;
+    background-color: var(--bg-3);
+    box-sizing: border-box;
+}
+
+.run-button {
+    color: var(--white);
+    font-size: var(--font-size-14);
+    border: 1px solid var(--bg-4);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blue);
+    cursor: pointer;
+    transition: var(--transition-1);
+}
+
+.run-button:hover {
+    /* color:var(--t-3); */
+    border-color: var(--bg-3);
+   
+}
+.stop-button {
+    color: var(--white);
+    font-size: var(--font-size-14);
+    border: 1px solid var(--bg-4);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--red-2);
+    cursor: pointer;
+    transition: var(--transition-1);
+}
+.stop-button:hover {
+    /* color:var(--t-3); */
+    border-color: var(--bg-3);
+}
+
+.new-array-button {
+    color: var(--white);
+    font-size: var(--font-size-14);
+    border: 1px solid var(--bg-4);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--yellow);
+    cursor: pointer;
+    transition: var(--transition-1);
+}
+
+.new-array-button:hover {
+    /* color:var(--t-3); */
+    border-color: var(--bg-3);
+}
+.reset-button {
+    color: var(--white);
+    font-size: var(--font-size-14);
+    border: 1px solid var(--bg-4);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+    cursor: pointer;
+    transition: var(--transition-1);
+}
+
+.reset-button:hover {
+    /* color:var(--t-3); */
+    border-color: var(--bg-3);
+}
+.control-title {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-16);
+    color: var(--t-1);
+    font-weight: 600;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 0.5rem;
+    box-shadow: var(--box-shadow-2);
+}
+
+.control-title > span {
+    display: flex;
+    align-items: center;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+input[type="number"]:focus {
+    border: 2px solid var(--blue);
+    outline: none;
+    
+}
+input[type="number"] {
+    padding: 0.25rem;
 }

@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <header>
         <nav>
-            <ThemeButton/>
+          <span>W R</span>
+          <span className='header-center'>Sorting Visualizer</span>
+           <span className='header-right'><ThemeButton/></span> 
         </nav>
     </header>
   )

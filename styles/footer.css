@@ -10,11 +10,43 @@ footer {
     position: relative;
     
 }
-header>nav {
+footer>nav {
     display: flex;
     width: 100%;
     height: 100%;
     padding: 1rem;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+
+.footer-anchor {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--t-1);
+    font-size: var(--font-size-14);
+    font-weight: 400;
+    text-decoration: none;
+    position: relative;
+}
+.footer-anchor>span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-anchor::after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    content: "";
+    width: 0%;
+    height: 1px;
+    background-color: var(--t-1);
+    transition: var(--transition-2);
+    
+}
+.footer-anchor:hover::after {
+    width: 100%;
+
 }
