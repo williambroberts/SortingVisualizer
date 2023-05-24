@@ -39,7 +39,7 @@ const Display = () => {
 
         <div className='display3'>
             {hues.map((item,index)=> (
-              <div key={uuidv4()} className='graph-item' style={{height:`${item/3.6}%`,backgroundColor:`${hasEnded===true? "var(--blue)": index===inspectIndex? "var(--yellow)": index===changeIndex? 'var(--green)': index===swapIndex?'var(--red':''}`}}><abbr title={item}></abbr></div>
+              <div key={uuidv4()} className='graph-item' style={{height:`${item/3.6}%`,backgroundColor:`${hasEnded===true? "var(--paleblue)": index===inspectIndex? "var(--yellow)": index===changeIndex? 'var(--green)': index===swapIndex?'var(--red':''}`}}><abbr title={item}></abbr></div>
             ) )}
         </div>
    </div>

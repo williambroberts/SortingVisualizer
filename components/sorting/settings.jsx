@@ -50,6 +50,7 @@ const SettingsPanel = () => {
         <select id="algorithDropdown" onChange={(e)=>setAlgorithm(e.target.value)} disabled={isDisabled}>
   <option value="0">Bubble sort</option>
   <option value="1">Selection sort</option>
+  <option value="2">Insertion sort</option>
 </select>
         </div>
       

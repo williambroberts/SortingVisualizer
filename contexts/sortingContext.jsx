@@ -11,7 +11,7 @@ const SortProvider = ({children}) => {
     const [length,setLength]=useState(0)
     const [hues,setHues]=useState([])
     const squares  = [1,4,9,16,25,36,49,64,81,100,132,144,169,196]
-  const algorithms = [BubbleSort,SelectionSort]
+  const algorithms = [BubbleSort,SelectionSort,InsertionSort]
     const [sleepTime,setSleepTime]=useState(0)
     const [algorithm,setAlgorithm]=useState(undefined)
     const [pause,setPause]=useState(false)
@@ -29,6 +29,32 @@ const SortProvider = ({children}) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
 
+    async function InsertionSort(sleep,arr,sleepTime,setState,stop) {
+      
+      for (let i=0; i<arr.length-1;i++){
+        for (let j=i+1;j>0;j--){
+          setInspectIndex(j)
+            await sleep(sleepTime)
+          if (arr[j]>=arr[j-1]){break}
+          else if (arr[j]<arr[j-1]){
+            setInspectIndex(-1)
+            setchangeIndex(j)
+            setSwapIndex(j+1)
+            await sleep(sleepTime/2)
+            let temp = arr[j]
+            arr[j]=arr[j-1]
+            arr[j-1]=temp
+            setSwapIndex(j)
+                setchangeIndex(j+1)
+                await sleep(sleepTime/2)
+                setState([...arr])
+                setSwapIndex(-1)
+                setchangeIndex(-1)
+          }
+        }
+      }
+    }
+
     async function SelectionSort(sleep,arr,sleepTime,setState,stop){
       console.log("SelectionSort",stop)
       for (let i=0; i<arr.length-1;i++){
@@ -42,13 +68,23 @@ const SortProvider = ({children}) => {
           if (arr[j]> rowMax){
             rowMax = arr[j], rowMaxIndex = j
           }
-        }
-       let temp = arr[rowLen-1]
+          setInspectIndex(-1)
+          setchangeIndex(j)
+          setSwapIndex(j+1)
+          await sleep(sleepTime/2)
+          let temp = arr[rowLen-1]
        
        arr[rowLen-1]=rowMax
        arr[rowMaxIndex]=temp
-      
-        setState([...arr])
+       setSwapIndex(j)
+       setchangeIndex(j+1)
+       await sleep(sleepTime/2)
+       setState([...arr])
+       setSwapIndex(-1)
+       setchangeIndex(-1)
+        }
+        
+       
       }
     }
    
