@@ -160,6 +160,8 @@ const SortProvider = ({children}) => {
       await(sleep(1000))
       setHasEnded(false)
       setInspectIndex(-1)
+      setSwapIndex(-1)
+      setchangeIndex(-1)
 
       // graphItems.forEach((item)=>console.log(item.style))
       // graphItems.forEach((item)=> item.style.backgroundColor="var(--blue)")

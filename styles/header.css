@@ -29,3 +29,17 @@ header>nav {
     font-size: var(--font-size-24);
     
 }
+
+.header-icon {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:1px solid var(--bg-4);
+    border-radius: 0px;
+    width: 36px;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../public/images/android-chrome-192x192.png');
+}
