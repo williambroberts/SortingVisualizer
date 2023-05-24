@@ -14,7 +14,7 @@ const SortProvider = ({children}) => {
   const algorithms = [BubbleSort,SelectionSort,InsertionSort,CycleSort]
   const algorithNames = ["Bubble sort","Selection sort","Insertion sort","Cycle sort"]
     const [sleepTime,setSleepTime]=useState(0)
-    const [algorithm,setAlgorithm]=useState(undefined)
+    const [algorithm,setAlgorithm]=useState(0)
     const [pause,setPause]=useState(false)
     const [stop,setStop]=useState(false)
   const [saturation,setSaturation]=useState(100)
@@ -117,9 +117,7 @@ const SortProvider = ({children}) => {
    
   
 
-    const chooseAlgorithm = (selection)=>{
-      setAlgorithm((prev)=>selection)
-    }
+    
 
 
     const generateNewHuesArray = () => {
@@ -141,7 +139,7 @@ const SortProvider = ({children}) => {
     const run = async () =>{
       setIsDisabled((prev)=>true)
       window.scrollTo(0,0)
-      console.log(hues,"hues")
+      console.log(hues,"hues",algorithm)
       if (hues.length < 3){
         alert("please select an Array length")
         setIsDisabled((prev)=>false)
@@ -151,7 +149,8 @@ const SortProvider = ({children}) => {
       let algorithStringNumber = document.querySelector("#algorithDropdown")
       let algorithNumber = parseInt(algorithStringNumber.value)
       console.log(algorithNumber,"alg number",algorithStringNumber)
-      setAlgorithm((prev)=> {return algorithms[algorithNumber]})
+      //setAlgorithm((prev)=>algorithNumber)
+      console.log(algorithm,"alg")
      // console.log("Run",algorithms[algorithNumber],hues,sleepTime)
      await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,stop)
       setIsDisabled((prev)=>false)
@@ -162,7 +161,7 @@ const SortProvider = ({children}) => {
       setInspectIndex(-1)
       setSwapIndex(-1)
       setchangeIndex(-1)
-
+      console.log(algorithm,"algortuhtm")
       // graphItems.forEach((item)=>console.log(item.style))
       // graphItems.forEach((item)=> item.style.backgroundColor="var(--blue)")
       // setTimeout(()=>{

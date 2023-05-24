@@ -47,7 +47,7 @@ const SettingsPanel = () => {
         </div>
         <div className='buttons-flex'>
         <span className='setting-name'>Select algorithm</span>
-        <select id="algorithDropdown" onChange={(e)=>setAlgorithm(e.target.value)} disabled={isDisabled}>
+        <select id="algorithDropdown" onChange={(e)=>setAlgorithm(parseInt(e.target.value))} disabled={isDisabled}>
   <option value="0">Bubble sort</option>
   <option value="1">Selection sort</option>
   <option value="2">Insertion sort</option>
