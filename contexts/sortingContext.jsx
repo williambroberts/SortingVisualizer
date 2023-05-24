@@ -82,7 +82,33 @@ const SortProvider = ({children}) => {
 
     async function SelectionSort(sleep,arr,sleepTime,setState,stop){
       console.log("SelectionSort",stop)
-     
+      for(let i=0;i<arr.length-1;i++){
+        let m = 0
+        let mi = 0
+        
+        for (let j=0;j<(arr.length-i);j++){
+          setInspectIndex(j)
+           await sleep(sleepTime)
+            if (arr[j]>m){
+                mi = j
+                m=arr[j]
+            }
+        }
+        setInspectIndex(-1)
+        setchangeIndex(mi)
+        setSwapIndex(arr.length-i)
+        await sleep(sleepTime/2)
+        
+        let temp = arr[arr.length-1-i]
+        arr[arr.length-1-i]=arr[mi]
+        arr[mi]=temp
+        setSwapIndex(mi)
+        setchangeIndex(arr.length-i)
+        await sleep(sleepTime/2)
+        setState([...arr])
+        setSwapIndex(-1)
+        setchangeIndex(-1)
+    }
     }
         
        
