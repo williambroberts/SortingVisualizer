@@ -82,36 +82,12 @@ const SortProvider = ({children}) => {
 
     async function SelectionSort(sleep,arr,sleepTime,setState,stop){
       console.log("SelectionSort",stop)
-      for (let i=0; i<arr.length-1;i++){
-        let rowLen = arr.length-i
-        let rowMax = 0
-        let rowMaxIndex = 0
-        for (let j=0; j<rowLen;j++){
-          setInspectIndex(j)
-           await sleep(sleepTime)
-
-          if (arr[j]> rowMax){
-            rowMax = arr[j], rowMaxIndex = j
-          }
-          setInspectIndex(-1)
-          setchangeIndex(j)
-          setSwapIndex(j+1)
-          await sleep(sleepTime/2)
-          let temp = arr[rowLen-1]
-       
-       arr[rowLen-1]=rowMax
-       arr[rowMaxIndex]=temp
-       setSwapIndex(j)
-       setchangeIndex(j+1)
-       await sleep(sleepTime/2)
-       setState([...arr])
-       setSwapIndex(-1)
-       setchangeIndex(-1)
-        }
+     
+    }
         
        
-      }
-    }
+      
+    
    
     async function BubbleSort(sleep,arr,sleepTime,setState,stop) {
       console.log("BubbleSort",stop)
@@ -130,12 +106,10 @@ const SortProvider = ({children}) => {
                 let temp = arr[j]
                 arr[j] = arr[j + 1]
                 arr[j+1] = temp
-                setSwapIndex(j)
-                setchangeIndex(j+1)
-                await sleep(sleepTime/2)
-                setState([...arr])
-                setSwapIndex(-1)
-                setchangeIndex(-1)
+                setInspectIndex(-1)
+                 setchangeIndex(j)
+                 setSwapIndex(j+1)
+                 await sleep(sleepTime/2)
               }
           }
       }

@@ -8,7 +8,7 @@ const Header = () => {
     <header>
         <nav>
           <span>W R</span>
-          <span className='header-center'>Sorting Visualizer: {algorithNames[algorithm]}</span>
+          <span className='header-center'>Sorting Visualizer: {algorithm}</span>
            <span className='header-right'><ThemeButton/></span> 
         </nav>
     </header>
