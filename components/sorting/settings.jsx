@@ -36,9 +36,7 @@ const SettingsPanel = () => {
         setSleepTime(0)
         setLength(0)
     }
-    useEffect(()=>{
-        console.log(isGraphAndGradient,"display")
-    },[isGraphAndGradient])
+    
   return (
     <div className='settings'>
         <div className='control-container'>
@@ -63,10 +61,12 @@ const SettingsPanel = () => {
       
         <div className='buttons-flex'>
         <span className='setting-name'>Select Display</span>
-        <select id="displayDropdown" onChange={(e)=>setIsGraphAndGradient(JSON.parse(e.target.value))} disabled={isDisabled}>
+        <select id="displayDropdown" onChange={(e)=>setIsGraphAndGradient(parseInt(e.target.value))} disabled={isDisabled}>
   
-  <option value="true"> Graph & gradient</option>
-  <option value="false">Squares</option>
+  <option value="0"> Graph & gradient</option>
+  <option value="1">Squares</option>
+  <option value="2"> Graph only</option>
+  <option value="3"> Gradient only</option>
 </select>
         </div>
 

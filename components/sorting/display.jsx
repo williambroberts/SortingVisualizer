@@ -29,7 +29,7 @@ const Display = () => {
    
 
   <div>
-    {!isGraphAndGradient? 
+    {isGraphAndGradient===1? 
     <div className='display' style={{gridTemplateColumns:`repeat(${NumCols},1fr)`,gridTemplateRows:`repeat(${NumRows},1fr)`}}>
        {hues.map((item,index)=>
          ( <div className='display-item'
@@ -39,14 +39,14 @@ const Display = () => {
    </div>
   :
   <div>
-  <div className='display2' style={{gridTemplateColumns:`repeat(${length-1},1fr)`}}>
+  <div className='display2' style={{gridTemplateColumns:`repeat(${length-1},1fr)`,display:`${isGraphAndGradient===2?"none":""}`}} >
       {hues.slice(0,hues.length-1).map((item,index)=> (
         <div key={uuidv4()} className='gradient-item' style={{ backgroundImage: `linear-gradient(to right, hsla(${item},${saturation}%,${lightness}%,${alpha}),  hsla(${hues[index+1]},${saturation}%,${lightness}%,${alpha}))`}}></div>
       )
        ) }
   </div>
 
-        <div className='display3'>
+        <div className='display3' style={{display:`${isGraphAndGradient===3? "none":''}`}}>
             {hues.map((item,index)=> (
               <div key={uuidv4()} className='graph-item' style={{height:`${item/3.6}%`,backgroundColor:`${hasEnded===true? "var(--purple)": index===inspectIndex? "var(--yellow2)": index===changeIndex? 'var(--palegreen)': index===swapIndex?'var(--paleblue':''}`}}><abbr title={item}></abbr></div>
             ) )}
