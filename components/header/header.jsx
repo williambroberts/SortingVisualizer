@@ -7,7 +7,7 @@ const noto = Noto_Color_Emoji({weight:['400'],style:["normal"],subsets:["emoji"]
 const Header = () => {
 
   const {algorithNames,algorithm}=useContext(SortingContext)
-  console.log(algorithNames,algorithm)
+ // console.log(algorithNames,algorithm)
   return (
     <header>
         <nav>

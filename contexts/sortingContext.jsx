@@ -19,13 +19,16 @@ const SortProvider = ({children}) => {
     const [stop,setStop]=useState(false)
   const [saturation,setSaturation]=useState(100)
   const [alpha,setAlpha]=useState(1)
-  const [lightness,setLightness]=useState(50)
+  const [lightness,setLightness]=useState(65)
   const[isDisabled,setIsDisabled] = useState(false)
   const [isSquares,setIsSquares] = useState(false)
   const [changeIndex,setchangeIndex]=useState()
   const [inspectIndex,setInspectIndex]=useState()
   const [swapIndex,setSwapIndex]=useState()
   const [hasEnded,setHasEnded]=useState(false)
+  const [isGraphAndGradient,setIsGraphAndGradient]=useState(false)
+
+
     const sleep = (milliSeconds) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
@@ -165,19 +168,17 @@ const SortProvider = ({children}) => {
     const run = async () =>{
       setIsDisabled((prev)=>true)
       window.scrollTo(0,0)
-      console.log(hues,"hues",algorithm)
+      
       if (hues.length < 3){
-        alert("please select an Array length")
+        alert("please select an Array length of 3 or more")
         setIsDisabled((prev)=>false)
 
         return
       }
       let algorithStringNumber = document.querySelector("#algorithDropdown")
       let algorithNumber = parseInt(algorithStringNumber.value)
-      console.log(algorithNumber,"alg number",algorithStringNumber)
-      //setAlgorithm((prev)=>algorithNumber)
-      console.log(algorithm,"alg")
-     // console.log("Run",algorithms[algorithNumber],hues,sleepTime)
+      
+     
      await algorithms[algorithNumber](sleep,hues,sleepTime,setHues,stop)
       setIsDisabled((prev)=>false)
      
@@ -187,12 +188,7 @@ const SortProvider = ({children}) => {
       setInspectIndex(-1)
       setSwapIndex(-1)
       setchangeIndex(-1)
-      console.log(algorithm,"algortuhtm")
-      // graphItems.forEach((item)=>console.log(item.style))
-      // graphItems.forEach((item)=> item.style.backgroundColor="var(--blue)")
-      // setTimeout(()=>{
-      //   graphItems.forEach((item)=> item.style.backgroundColor="var(--white)")
-      // },1000)
+     
     }
 
     const generateHues = (length) =>{
@@ -213,6 +209,15 @@ const SortProvider = ({children}) => {
       setNumRows((prev)=>size)
       generateHues(length)
     },[length])
+
+
+    useEffect(()=>{
+      if (length<3){
+        setIsDisabled(true)
+      }else{
+        setIsDisabled(false)
+      }
+    },[length])
   return (
     <SortingContext.Provider value={{NumCols,setNumCols,
     NumRows,setNumRows,
@@ -224,7 +229,8 @@ const SortProvider = ({children}) => {
     generateNewHuesArray,
     run,stop,setStop,
     setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares,
-    changeIndex,inspectIndex,swapIndex,hasEnded,algorithNames
+    changeIndex,inspectIndex,swapIndex,hasEnded,algorithNames,
+    setIsGraphAndGradient,isGraphAndGradient
     }}>
         {children}
     </SortingContext.Provider>

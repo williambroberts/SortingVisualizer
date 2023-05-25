@@ -3,7 +3,7 @@
     justify-content: center;
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: repeat(auto-fit,minmax(300px,500px));
+    grid-template-columns: repeat(auto-fit,minmax(300px,550px));
     gap: 1rem;
     background-color: var(--bg-1);
     width: 90%;

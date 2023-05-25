@@ -12,10 +12,11 @@ const Display = () => {
       algorithm,setAlgorithm,
       pause,setPause,
       generateNewHuesArray,stop,alpha,lightness,saturation,setIsSquares,squares,
-      changeIndex,inspectIndex,swapIndex,hasEnded
+      changeIndex,inspectIndex,swapIndex,hasEnded,
+      setIsGraphAndGradient,isGraphAndGradient,
       } = useContext(SortingContext)
     
-
+    
   
   //console.log(hues,"hues,",length,"length")
   return (
@@ -28,7 +29,7 @@ const Display = () => {
   //  </div>
 
   <div className='display-wrapper'>
-
+    
  
   <div className='display2' style={{gridTemplateColumns:`repeat(${length-1},1fr)`}}>
       {hues.slice(0,hues.length-1).map((item,index)=> (

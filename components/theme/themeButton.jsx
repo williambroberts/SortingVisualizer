@@ -11,14 +11,14 @@ const ThemeButton = () => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
-  //useEffect only runs on the client, so now we can safely show the UI
-  // useEffect(() => {
-  //   setMounted(true)
-  // }, [])
+ 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-  // if (!mounted) {
-  //   return null
-  // }
+  if (!mounted) {
+    return null
+  }
   const themeChange = ()=>{
     setTheme(theme==="light"?"dark":"light")
     let myHtml = document.querySelector('html')
@@ -26,7 +26,7 @@ const ThemeButton = () => {
     setTimeout(()=>{
       let myHtml = document.querySelector('html')
     myHtml.style.opacity=1
-    },1)
+    },10)
   }
   return (
     <button className={`theme-button ${theme==="light"? "light":"dark"}`} onClick={()=>themeChange()}>
@@ -38,6 +38,3 @@ const ThemeButton = () => {
 
 export default ThemeButton
 
-
-// {`${theme==='light'? "☽"
-// :"☀"}`}
