@@ -26,7 +26,7 @@ const SortProvider = ({children}) => {
   const [inspectIndex,setInspectIndex]=useState()
   const [swapIndex,setSwapIndex]=useState()
   const [hasEnded,setHasEnded]=useState(false)
-  const [isGraphAndGradient,setIsGraphAndGradient]=useState(false)
+  const [isGraphAndGradient,setIsGraphAndGradient]=useState(true)
 
 
     const sleep = (milliSeconds) => {
@@ -167,14 +167,16 @@ const SortProvider = ({children}) => {
 
     const run = async () =>{
       setIsDisabled((prev)=>true)
-      window.scrollTo(0,0)
+     
       
       if (hues.length < 3){
+        //console.log(length,"length",hues)
         alert("please select an Array length of 3 or more")
         setIsDisabled((prev)=>false)
 
         return
       }
+       window.scrollTo(0,0)
       let algorithStringNumber = document.querySelector("#algorithDropdown")
       let algorithNumber = parseInt(algorithStringNumber.value)
       

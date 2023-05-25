@@ -1,9 +1,11 @@
 "use client"
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { SortingContext } from '@/contexts/sortingContext'
 import FlexCol from '../setup/flexCol'
 import IconSettingsOutline from '../icons/settings'
+import { useRouter } from 'next/navigation';
 const SettingsPanel = () => {
+    const router = useRouter();
     const {NumCols,setNumCols,
         NumRows,setNumRows,
         length,setLength,
@@ -21,6 +23,7 @@ const SettingsPanel = () => {
        setHues([])
         console.log("stopped")
         history.go(0);
+        //router.refresh()
         e.preventDefault()
        // location.reload();
     }
@@ -33,7 +36,9 @@ const SettingsPanel = () => {
         setSleepTime(0)
         setLength(0)
     }
-    
+    useEffect(()=>{
+        console.log(isGraphAndGradient,"display")
+    },[isGraphAndGradient])
   return (
     <div className='settings'>
         <div className='control-container'>
@@ -58,10 +63,10 @@ const SettingsPanel = () => {
       
         <div className='buttons-flex'>
         <span className='setting-name'>Select Display</span>
-        <select id="displayDropdown" onChange={(e)=>setIsGraphAndGradient(e.target.value)} disabled={isDisabled}>
-  <option value="false">Squares</option>
-  <option value="1"> Graph & gradient</option>
+        <select id="displayDropdown" onChange={(e)=>setIsGraphAndGradient(JSON.parse(e.target.value))} disabled={isDisabled}>
   
+  <option value="true"> Graph & gradient</option>
+  <option value="false">Squares</option>
 </select>
         </div>
 

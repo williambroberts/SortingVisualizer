@@ -9,7 +9,19 @@
     width: 90%;
     
 }
-
+.display-wrapper {
+    aspect-ratio: 1/1;
+    border: 1px solid var(--bg-4);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--t-1);
+    font-size: var(--font-size-16);
+    font-weight: 400;
+    background-image: repeating-linear-gradient(transparent 0px 5px, var(--grid) 6px 6px),repeating-linear-gradient(90deg,transparent 0px 5px, var(--grid) 6px 6px);
+}
 .display {
     aspect-ratio: 1/1;
     border: 1px solid var(--bg-4);
@@ -324,4 +336,13 @@ input[type="number"] {
     transition: var(--transition-1);
     display: flex;
     align-items: center;
+}
+
+select {
+    border: 2px solid transparent;
+    outline: none;
+}
+
+select:focus {
+    border-color: var(--blue);
 }
