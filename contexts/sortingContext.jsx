@@ -27,6 +27,7 @@ const SortProvider = ({children}) => {
   const [swapIndex,setSwapIndex]=useState()
   const [hasEnded,setHasEnded]=useState(false)
   const [isGraphAndGradient,setIsGraphAndGradient]=useState(true)
+  const [isRun,setIsRun]=useState(false)
 
 
     const sleep = (milliSeconds) => {
@@ -176,6 +177,7 @@ const SortProvider = ({children}) => {
 
         return
       }
+      setIsRun(true)
        window.scrollTo(0,0)
       let algorithStringNumber = document.querySelector("#algorithDropdown")
       let algorithNumber = parseInt(algorithStringNumber.value)
@@ -190,7 +192,7 @@ const SortProvider = ({children}) => {
       setInspectIndex(-1)
       setSwapIndex(-1)
       setchangeIndex(-1)
-     
+     setIsRun(false)
     }
 
     const generateHues = (length) =>{
@@ -229,7 +231,7 @@ const SortProvider = ({children}) => {
     algorithm,setAlgorithm,
     pause,setPause,
     generateNewHuesArray,
-    run,stop,setStop,
+    run,stop,setStop,isRun,
     setSaturation,saturation,setAlpha,alpha,setLightness,lightness,isDisabled,setIsSquares,squares,
     changeIndex,inspectIndex,swapIndex,hasEnded,algorithNames,
     setIsGraphAndGradient,isGraphAndGradient

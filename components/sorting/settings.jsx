@@ -8,7 +8,7 @@ const SettingsPanel = () => {
     const router = useRouter();
     const {NumCols,setNumCols,
         NumRows,setNumRows,
-        length,setLength,
+        length,setLength,isRun,
         hues,setHues,
         sleepTime,setSleepTime,
         algorithm,setAlgorithm,
@@ -89,7 +89,8 @@ const SettingsPanel = () => {
         <FlexCol>
         <div className='input-flex'>
         <span className='setting-name'>Array length</span>
-        <button className='settings-button-p' onClick={()=>setLength((prev)=>prev===100? prev: prev+1)} style={{backgroundColor:`${length<3? "var(--neongreen)":""}`}}>+</button>
+        <button disabled={isRun}
+        className='settings-button-p' onClick={()=>setLength((prev)=>prev===100? prev: prev+1)} style={{backgroundColor:`${length<3? "var(--neongreen)": isRun? "var(--bg-4)" :""}`}}>+</button>
         <input type='number' value={length} onChange={(e)=>setLength((prev)=>parseInt(e.target.value))} name="length-input" min="10" max="100" disabled={isDisabled}/>
         {/* <span className='setting-units'><abbr title='integer'>int</abbr></span> */}
         <button className='settings-button' style={{backgroundColor:`${isDisabled? "var(--bg-4)" : ""}`}}
