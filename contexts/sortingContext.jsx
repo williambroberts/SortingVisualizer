@@ -11,8 +11,8 @@ const SortProvider = ({children}) => {
     const [length,setLength]=useState(0)
     const [hues,setHues]=useState([])
     const squares  = [1,4,9,16,25,36,49,64,81,100,132,144,169,196]
-  const algorithms = [BubbleSort,SelectionSort,InsertionSort,CycleSort]
-  const algorithNames = ["Bubble sort","Selection sort","Insertion sort","Cycle sort"]
+  const algorithms = [BubbleSort,SelectionSort,InsertionSort,CycleSort,MergeSort]
+  const algorithNames = ["Bubble sort","Selection sort","Insertion sort","Cycle sort","Merge Sort"]
     const [sleepTime,setSleepTime]=useState(0)
     const [algorithm,setAlgorithm]=useState(0)
     const [pause,setPause]=useState(false)
@@ -33,6 +33,76 @@ const SortProvider = ({children}) => {
     const sleep = (milliSeconds) => {
       return new Promise((resolve) => setTimeout(resolve, milliSeconds))
     }	
+
+     function MergeSort(sleep,arr,sleepTime,setState,stop) {
+      //console.log("mergesort arr length",arr.length)
+      // await sleep(sleepTime)
+      if (arr?.length <2){
+       
+        return arr
+    }
+    let left = arr.splice(0,arr.length/2)
+    let right = arr
+   // await sleep(sleepTime)
+    let newArr= merge(MergeSort(sleep,left,sleepTime,setState,stop),MergeSort(sleep,right,sleepTime,setState,stop),setHues)
+    return newArr
+  }
+const merge =  (one,two,setState)=>{
+ // console.log("merge one , two  ",one,two)
+    let x = []
+   // setInspectIndex(one[0])
+   // setchangeIndex(two[0])
+    //await sleep(sleepTime)
+    while (one?.length && two?.length) {
+     // setInspectIndex(one[0])
+      //setchangeIndex(two[0])
+      //await sleep(sleepTime)
+        if (one[0]< two[0]){
+         // setInspectIndex(-1)
+           //   setchangeIndex(one[0])
+             // setSwapIndex(two[0])
+             // await sleep(sleepTime/2)
+            x.push(one.shift())
+        }else {
+         // setInspectIndex(-1)
+         // setchangeIndex(two[0])
+         // setSwapIndex(one[0])
+         // await sleep(sleepTime/2)
+            x.push(two.shift())
+        }
+        //setState([...x])
+       // setSwapIndex(-1)
+       // setchangeIndex(-1)
+    }
+   
+    while (one?.length){
+     // setInspectIndex(one[0])
+      //await sleep(sleepTime)
+     // setInspectIndex(-1)
+      //setchangeIndex(one[0])
+      //await sleep(sleepTime)
+      //setchangeIndex(-1)
+        x.push(one.shift())
+        //setState([...x])
+    }
+    while (two?.length){
+     // setInspectIndex(two[0])
+      //await sleep(sleepTime)
+     // setInspectIndex(-1)
+      //setchangeIndex(two[0])
+     // await sleep(sleepTime)
+     // setchangeIndex(-1)
+        x.push(two.shift())
+       // setState([...x])
+    }
+    //console.log(x,"x, merged")
+    let newHues = [...hues,...x].slice(x.length)
+    setHues(newHues)
+    console.log("hues",hues,"newhues",newHues,x,"x")
+    return x
+}
+    
+
     async function CycleSort(sleep,arr,sleepTime,setState,stop) {
       for (let i=0;i<arr.length-1;i++){
         for (let j=0;j<(arr.length+i);j++){
@@ -177,7 +247,7 @@ const SortProvider = ({children}) => {
 
         return
       }
-      setIsRun(true)
+      setIsRun((prev)=>true)
        window.scrollTo(0,0)
       let algorithStringNumber = document.querySelector("#algorithDropdown")
       let algorithNumber = parseInt(algorithStringNumber.value)

@@ -10,13 +10,14 @@ const Display = () => {
       hues,setHues,
       sleepTime,setSleepTime,
       algorithm,setAlgorithm,
-      pause,setPause,
+      pause,setPause,isRun,
       generateNewHuesArray,stop,alpha,lightness,saturation,setIsSquares,squares,
       changeIndex,inspectIndex,swapIndex,hasEnded,
       setIsGraphAndGradient,isGraphAndGradient,
       } = useContext(SortingContext)
     
-  if (hues.length<3){
+  if (hues.length<3 && !isRun){
+    //console.log(isRun,"is run")
     return (
       <div className='display-wrapper'>
         <span>Please select an Array length of at least 3</span>
